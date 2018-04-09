@@ -1,0 +1,7 @@
+search *
+| where Type == "Perf"
+| where Computer == "ComputerName"
+| where ObjectName == "LogicalDisk"
+| where CounterName == @"Disk Transfers/sec"
+| where InstanceName != "_Total"
+| summarize avg(CounterValue) by InstanceName, bin(TimeGenerated, 10s)
