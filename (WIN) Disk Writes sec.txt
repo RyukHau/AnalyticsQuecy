@@ -1,0 +1,8 @@
+search *
+
+| where Type == "Perf"
+| where Computer == "WINDOWSComputerName"
+| where ObjectName == "LogicalDisk"
+| where CounterName == "Disk Writes/sec"
+| where InstanceName != "_Total"
+| summarize avg(CounterValue) by InstanceName, bin(TimeGenerated, 10s)
