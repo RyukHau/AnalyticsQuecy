@@ -1,0 +1,5 @@
+search *
+| where Type  == "Heartbeat"
+| where Computer == "ComputerName"
+| summarize count() by Type, bin(TimeGenerated, 1m) 
+| render timechart
