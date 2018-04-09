@@ -1,7 +1,7 @@
 search *
 | where Type == "Perf"
 | where Computer == "ComputerName"
-| where ObjectName == "LogicalDisk"
+| where ObjectName == "Logical Disk"
 | where CounterName == @"Free Megabytes"
 | where InstanceName != "_Total" 
 | summarize any(CounterValue) by InstanceName
