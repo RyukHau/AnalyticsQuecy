@@ -1,0 +1,7 @@
+search *
+| where Type == "Perf"
+| where Computer == "WINDOWSComputerName"
+| where ObjectName == "Network Adapter"
+| where CounterName == @"Bytes Sent/sec"
+| summarize avg(CounterValue) by InstanceName, bin(TimeGenerated, 1m)
+| sort by TimeGenerated desc 
