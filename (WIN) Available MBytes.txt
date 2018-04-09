@@ -1,0 +1,11 @@
+search  * 
+
+| where Type == "Perf" 
+
+| where Computer == "WINDOWSComputerName" 
+
+| where ObjectName == "Memory" 
+
+| where CounterName == @"Available MBytes" 
+
+| sort by TimeGenerated desc
