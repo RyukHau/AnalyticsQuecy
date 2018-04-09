@@ -1,0 +1,9 @@
+search *
+| where TimeGenerated > ago(10m)
+| where Type == "Perf"
+| where (Computer == "LinuxComputerName" or Computer == "LinuxComputerName")
+| where ObjectName == "Processor"
+| where InstanceName == "_Total"
+| where CounterName == "% Privileged Time"
+| summarize avg(CounterValue) by CounterName, bin(TimeGenerated, 1m)
+| sort by TimeGenerated desc 
