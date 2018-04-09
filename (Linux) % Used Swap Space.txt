@@ -1,0 +1,7 @@
+search  * 
+| where Type == "Perf" 
+| where (Computer == "LinuxComputerName" or Computer == "LinuxComputerName")
+| where ObjectName == "Memory" 
+| where CounterName == @"% Used Swap Space" 
+| summarize avg(CounterValue) by CounterName, bin(TimeGenerated, 1m)
+| sort by TimeGenerated desc

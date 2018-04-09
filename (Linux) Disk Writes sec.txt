@@ -1,0 +1,13 @@
+search *
+
+| where Type == "Perf"
+
+| where (Computer == "centosb74" or Computer  == "CentOSb74")
+
+| where ObjectName == "Logical Disk"
+
+| where CounterName == "Disk Writes/sec"
+
+| where InstanceName != "_Total" 
+
+| summarize any(CounterValue) by InstanceName

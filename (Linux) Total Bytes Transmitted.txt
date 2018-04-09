@@ -1,0 +1,7 @@
+search *
+| where Type == "Perf"
+| where ( Computer == "LinuxComputerName" or Computer == "LinuxComputerName" )
+| where ObjectName == "Network"
+| where ( CounterName == "Total Bytes Transmitted" )
+| summarize avg(CounterValue) by InstanceName, bin(TimeGenerated, 1m)
+| sort by TimeGenerated desc 

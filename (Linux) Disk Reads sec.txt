@@ -1,0 +1,7 @@
+search *
+| where Type == "Perf"
+| where (Computer == "LinuxComputerName" or Computer == "LinuxComputerName")
+| where ObjectName == "Logical Disk"
+| where CounterName == @"Disk Reads/sec"
+| where InstanceName != "_Total"
+| summarize avg(CounterValue) by InstanceName, bin(TimeGenerated, 10s)
