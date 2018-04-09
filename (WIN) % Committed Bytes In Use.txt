@@ -1,0 +1,11 @@
+search  * 
+
+| where Type == "Perf" 
+
+| where Computer == "WINDOWSComputerName" 
+
+| where ObjectName == "Memory" 
+
+| where CounterName == @"% Committed Bytes In Use" 
+
+| summarize avg(CounterValue) by CounterName, bin(TimeGenerated, 1m)
