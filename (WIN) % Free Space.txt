@@ -1,0 +1,7 @@
+search *
+| where Type == "Perf"
+| where Computer == "WINDOWSComputerName"
+| where ObjectName == "LogicalDisk"
+| where CounterName == @"% Free Space"
+| where InstanceName != "_Total" 
+| summarize any(CounterValue) by InstanceName
