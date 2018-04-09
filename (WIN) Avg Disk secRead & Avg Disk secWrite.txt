@@ -1,0 +1,13 @@
+search *
+
+| where Type == "Perf"
+
+| where Computer == "WINDOWSComputerName"
+
+| where ObjectName == "LogicalDisk"
+
+| where ( CounterName == "Avg. Disk sec/Read" or CounterName == "Avg. Disk sec/Write" )  
+
+| where InstanceName == "C:"
+
+| summarize avg(CounterValue) by CounterName, bin(TimeGenerated, 10s)
