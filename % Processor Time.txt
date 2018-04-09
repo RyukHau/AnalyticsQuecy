@@ -1,0 +1,6 @@
+search * 
+| where Type == "Perf" 
+| where Computer == "ComputerName" 
+| where ObjectName == "Processor" 
+| where CounterName == @"% Processor Time" 
+| summarize avg(CounterValue) by InstanceName, bin(TimeGenerated, 1m) 
